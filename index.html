@@ -1,56 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Enviar por WhatsApp</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Solicitud de Información</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .required-asterisk {
+      color: red;
+    }
+    .whatsapp-button {
+      background-color: #25D366;
+      color: white;
+    }
+    .whatsapp-button i {
+      margin-right: 8px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center">Formulario de Contacto</h2>
-        <form id="contactForm">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="lastName" required>
-            </div>
-            <div class="mb-3">
-                <label for="dob" class="form-label">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" id="dob" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar por WhatsApp</button>
-        </form>
-    </div>
+  <div class="container mt-5">
+    <form id="infoForm" novalidate>
+      <!-- Nombre y Apellido -->
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Nombre y Apellido <span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" id="fullName" placeholder="Ingresa Nombre y Apellido" required>
+        <div class="form-text">
+          Hermosa por favor ingresa un solo nombre y un apellido <strong>(Reales)</strong>
+        </div>
+        <div class="invalid-feedback">
+          Por favor ingresa un nombre y un apellido válidos.
+        </div>
+      </div>
 
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const lastName = document.getElementById('lastName').value;
-            const dob = document.getElementById('dob').value;
-            const email = document.getElementById('email').value;
-            
-            // Texto del mensaje
-            const message = `Hola, mi nombre es ${name} ${lastName}, nací el ${dob} y mi correo es ${email}.`;
+      <!-- Fecha de Nacimiento -->
+      <div class="mb-3">
+        <label for="birthdate" class="form-label">Fecha de Nacimiento <span class="required-asterisk">*</span></label>
+        <input type="date" class="form-control" id="birthdate" placeholder="Ingrese fecha de Nacimiento" required>
+        <div class="form-text">
+          Ingresa tu fecha de nacimiento <strong>(Real)</strong>
+        </div>
+        <div class="invalid-feedback">
+          Debes ser mayor de 18 años.
+        </div>
+      </div>
 
-            // Número de teléfono a enviar (puedes agregar aquí un valor fijo o variable)
-            const phoneNumber = '573001234567'; // Número de teléfono internacional (ej: Colombia = +57)
+      <!-- Correo Electrónico -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico <span class="required-asterisk">*</span></label>
+        <input type="email" class="form-control" id="email" placeholder="Ingresa un Correo electrónico válido" required>
+        <div class="invalid-feedback">
+          Por favor ingresa un correo electrónico válido.
+        </div>
+      </div>
 
-            // Enlace wa.me
-            const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            // Abrir en nueva pestaña
-            window.open(whatsappLink, '_blank');
-        });
-    </script>
+      <!-- Párrafo antes del botón -->
+      <p class="text-justify fw-bold fst-italic">
+        En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de INVERSIÓN.
+      </p>
+
+      <!-- Botón de WhatsApp -->
+      <button type="submit" class="btn whatsapp-button">
+        <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // Validación Bootstrap
+    (function () {
+      'use strict';
+
+      const form = document.querySelector('#infoForm');
+      
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Validar Nombre y Apellido
+        const fullName = document.querySelector('#fullName');
+        const fullNameValue = fullName.value.trim().split(' ');
+        if (fullNameValue.length < 2) {
+          fullName.classList.add('is-invalid');
+        } else {
+          fullName.classList.remove('is-invalid');
+          fullName.classList.add('is-valid');
+        }
+
+        // Validar Fecha de Nacimiento (Mayor de 18 años)
+        const birthdate = document.querySelector('#birthdate');
+        const birthdateValue = new Date(birthdate.value);
+        const today = new Date();
+        const age = today.getFullYear() - birthdateValue.getFullYear();
+        const month = today.getMonth() - birthdateValue.getMonth();
+
+        if (month < 0 || (month === 0 && today.getDate() < birthdateValue.getDate())) {
+          age--;
+        }
+
+        if (age < 18) {
+          birthdate.classList.add('is-invalid');
+        } else {
+          birthdate.classList.remove('is-invalid');
+          birthdate.classList.add('is-valid');
+        }
+
+        // Validar el formulario completo
+        if (form.checkValidity()) {
+          // Redireccionar a WhatsApp con los datos si todo es válido
+          const whatsappURL = `https://wa.me/?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
+          window.open(whatsappURL, '_blank');
+        }
+      }, false);
+    })();
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
