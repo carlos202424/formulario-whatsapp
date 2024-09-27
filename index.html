@@ -12,66 +12,86 @@
     }
     .required-asterisk {
       color: red;
+      margin-right: 5px;
+    }
+    .form-container {
+      background-color: #343a40;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
     }
     .whatsapp-button {
       background-color: #25D366;
       color: white;
+      width: 100%;
     }
     .whatsapp-button i {
       margin-right: 8px;
     }
+    .form-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <form id="infoForm" novalidate>
-      <div class="row">
-        <!-- Nombre y Apellido -->
-        <div class="col-md-12 mb-3">
-          <label for="fullName" class="form-label">Nombre y Apellido <span class="required-asterisk">*</span></label>
-          <input type="text" class="form-control bg-dark text-light" id="fullName" placeholder="Ingresa Nombre y Apellido" required>
-          <div class="form-text text-light">
-            Hermosa por favor ingresa un solo nombre y un apellido <strong>(Reales)</strong>
-          </div>
-          <div class="invalid-feedback">
-            Por favor ingresa un nombre y un apellido válidos.
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- Fecha de Nacimiento -->
-        <div class="col-md-6 mb-3">
-          <label for="birthdate" class="form-label">Fecha de Nacimiento <span class="required-asterisk">*</span></label>
-          <input type="date" class="form-control bg-dark text-light" id="birthdate" placeholder="Ingrese fecha de Nacimiento" required>
-          <div class="form-text text-light">
-            Ingresa tu fecha de nacimiento <strong>(Real)</strong>
-          </div>
-          <div class="invalid-feedback">
-            Debes ser mayor de 18 años.
+  <div class="container">
+    <div class="form-container">
+      <!-- Título del formulario -->
+      <div class="form-title">Luxery Prime Agency</div>
+      
+      <form id="infoForm" novalidate>
+        <div class="row">
+          <!-- Nombre y Apellido -->
+          <div class="col-md-12 mb-3">
+            <label for="fullName" class="form-label"><span class="required-asterisk">*</span>Nombre y Apellido</label>
+            <input type="text" class="form-control bg-dark text-light" id="fullName" placeholder="Ingresa Nombre y Apellido" required>
+            <div class="form-text text-light">
+              Hermosa por favor ingresa un solo nombre y un apellido <strong>(Reales)</strong>
+            </div>
+            <div class="invalid-feedback">
+              Por favor ingresa un nombre y un apellido válidos.
+            </div>
           </div>
         </div>
 
-        <!-- Correo Electrónico -->
-        <div class="col-md-6 mb-3">
-          <label for="email" class="form-label">Correo Electrónico <span class="required-asterisk">*</span></label>
-          <input type="email" class="form-control bg-dark text-light" id="email" placeholder="Ingresa un Correo electrónico válido" required>
-          <div class="invalid-feedback">
-            Por favor ingresa un correo electrónico válido.
+        <div class="row">
+          <!-- Fecha de Nacimiento -->
+          <div class="col-md-6 mb-3">
+            <label for="birthdate" class="form-label"><span class="required-asterisk">*</span>Fecha de Nacimiento</label>
+            <input type="date" class="form-control bg-dark text-light" id="birthdate" placeholder="Ingrese fecha de Nacimiento" required>
+            <div class="form-text text-light">
+              Ingresa tu fecha de nacimiento <strong>(Real)</strong>
+            </div>
+            <div class="invalid-feedback">
+              Debes ser mayor de 18 años.
+            </div>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="col-md-6 mb-3">
+            <label for="email" class="form-label"><span class="required-asterisk">*</span>Correo Electrónico</label>
+            <input type="email" class="form-control bg-dark text-light" id="email" placeholder="Ingresa un Correo electrónico válido" required>
+            <div class="invalid-feedback">
+              Por favor ingresa un correo electrónico válido.
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Párrafo antes del botón -->
-      <p class="text-justify fw-bold fst-italic">
-        En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de INVERSIÓN.
-      </p>
+        <!-- Párrafo antes del botón -->
+        <p class="text-justify fw-bold fst-italic">
+          En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de INVERSIÓN.
+        </p>
 
-      <!-- Botón de WhatsApp -->
-      <button type="submit" class="btn whatsapp-button">
-        <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
-      </button>
-    </form>
+        <!-- Botón de WhatsApp -->
+        <button type="submit" class="btn whatsapp-button">
+          <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
+        </button>
+      </form>
+    </div>
   </div>
 
   <script>
