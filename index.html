@@ -105,11 +105,14 @@
         event.preventDefault();
         event.stopPropagation();
 
+        let valid = true;
+
         // Validar Nombre y Apellido
         const fullName = document.querySelector('#fullName');
         const fullNameValue = fullName.value.trim().split(' ');
         if (fullNameValue.length < 2) {
           fullName.classList.add('is-invalid');
+          valid = false;
         } else {
           fullName.classList.remove('is-invalid');
           fullName.classList.add('is-valid');
@@ -119,7 +122,7 @@
         const birthdate = document.querySelector('#birthdate');
         const birthdateValue = new Date(birthdate.value);
         const today = new Date();
-        const age = today.getFullYear() - birthdateValue.getFullYear();
+        let age = today.getFullYear() - birthdateValue.getFullYear();
         const month = today.getMonth() - birthdateValue.getMonth();
 
         if (month < 0 || (month === 0 && today.getDate() < birthdateValue.getDate())) {
@@ -128,13 +131,24 @@
 
         if (age < 18) {
           birthdate.classList.add('is-invalid');
+          valid = false;
         } else {
           birthdate.classList.remove('is-invalid');
           birthdate.classList.add('is-valid');
         }
 
+        // Validar Correo Electrónico
+        const email = document.querySelector('#email');
+        if (!email.checkValidity()) {
+          email.classList.add('is-invalid');
+          valid = false;
+        } else {
+          email.classList.remove('is-invalid');
+          email.classList.add('is-valid');
+        }
+
         // Validar el formulario completo
-        if (form.checkValidity()) {
+        if (valid && form.checkValidity()) {
           // Redireccionar a WhatsApp con los datos si todo es válido
           const whatsappURL = `https://wa.me/573194374583?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
           window.open(whatsappURL, '_blank');
