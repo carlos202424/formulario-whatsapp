@@ -87,7 +87,7 @@
         </p>
 
         <!-- Botón de WhatsApp -->
-        <button type="submit" class="btn whatsapp-button" id="whatsappBtn">
+        <button type="submit" class="btn whatsapp-button">
           <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
         </button>
       </form>
@@ -100,13 +100,7 @@
       'use strict';
 
       const form = document.querySelector('#infoForm');
-      let telefono = '';
-
-      // Obtener el número de teléfono desde Google Sheets
-      google.script.run.withSuccessHandler(function(response) {
-        telefono = response; // Guardar el teléfono dinámico
-      }).obtenerTelefono();
-
+      
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -156,7 +150,7 @@
         // Validar el formulario completo
         if (valid && form.checkValidity()) {
           // Redireccionar a WhatsApp con los datos si todo es válido
-          const whatsappURL = `https://wa.me/${telefono}?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
+          const whatsappURL = `https://wa.me/573194374583?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
           window.open(whatsappURL, '_blank');
         }
       }, false);
