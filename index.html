@@ -1,183 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxery Prime Agency - Formulario</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #555764;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .form-content {
-            background: linear-gradient(
-                50deg,
-                rgba(40, 42, 55, 1) 50%,
-                rgba(40, 42, 55, 0.7)
-            ), url(https://i.imgur.com/iPItQOB.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding: 50px;
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 25px;
-        }
-
-        .form-content h2 {
-            color: #f4f6f9;
-            font-size: 40px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .form-content p {
-            color: #f4f6f9;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .form-content p strong {
-            font-weight: bold;
-        }
-
-        .form-content p.italic {
-            font-style: italic;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        label {
-            font-size: 17px;
-            color: #959AAb;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        label::before {
-            content: "*";
-            color: red;
-            margin-right: 5px;
-        }
-
-        input {
-            padding: 15px;
-            background-color: #333646;
-            border: 0;
-            font-size: 15px;
-            color: #f4f6f9;
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-
-        input:focus {
-            outline: 1px solid #1e92e9;
-        }
-
-        .btn {
-            background-color: #25D366;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn i {
-            margin-right: 10px;
-        }
-
-        .btn:hover {
-            background-color: #22c55e;
-        }
-
-        @media(max-width: 991px) {
-            body {
-                padding: 30px;
-            }
-
-            .form-content {
-                width: 100%;
-            }
-
-            form {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Solicitud de Información</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #212529;
+      color: white;
+    }
+    .required-asterisk {
+      color: red;
+      margin-right: 5px;
+    }
+    .form-container {
+      background-color: #343a40;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+    }
+    .whatsapp-button {
+      background-color: #25D366;
+      color: white;
+      width: 100%;
+    }
+    .whatsapp-button i {
+      margin-right: 8px;
+    }
+    .form-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="form-content">
-        <h2>Luxery Prime Agency</h2>
-        <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
-        <p class="italic"><strong>Toma en consideración</strong> que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
-        
-        <form id="formulario">
-            <label for="name">Nombre y Apellido:</label>
-            <input type="text" id="name" placeholder="Ingresa Nombre y Apellido" required>
-            <small style="color: #f4f6f9;">Hermosa por favor ingresa un solo nombre y un apellido (Reales)</small>
+  <div class="container">
+    <div class="form-container">
+      <!-- Título del formulario -->
+      <div class="form-title">Luxery Prime Agency</div>
+      
+      <form id="infoForm" novalidate>
+        <div class="row">
+          <!-- Nombre y Apellido -->
+          <div class="col-md-12 mb-3">
+            <label for="fullName" class="form-label"><span class="required-asterisk">*</span>Nombre y Apellido</label>
+            <input type="text" class="form-control bg-dark text-light" id="fullName" placeholder="Ingresa Nombre y Apellido" required>
+            <div class="form-text text-light">
+              Hermosa por favor ingresa un solo nombre y un apellido <strong>(Reales)</strong>
+            </div>
+            <div class="invalid-feedback">
+              Por favor ingresa un nombre y un apellido válidos.
+            </div>
+          </div>
+        </div>
 
-            <label for="date">Fecha de Nacimiento:</label>
-            <input type="date" id="date" name="date" required>
-            <small style="color: #f4f6f9;">Ingresa tu fecha de nacimiento (Real)</small>
+        <div class="row">
+          <!-- Fecha de Nacimiento -->
+          <div class="col-md-6 mb-3">
+            <label for="birthdate" class="form-label"><span class="required-asterisk">*</span>Fecha de Nacimiento</label>
+            <input type="date" class="form-control bg-dark text-light" id="birthdate" placeholder="Ingrese fecha de Nacimiento" required>
+            <div class="form-text text-light">
+              Ingresa tu fecha de nacimiento <strong>(Real)</strong>
+            </div>
+            <div class="invalid-feedback">
+              Debes ser mayor de 18 años.
+            </div>
+          </div>
 
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" placeholder="Ingresa un Correo electrónico válido" required>
+          <!-- Correo Electrónico -->
+          <div class="col-md-6 mb-3">
+            <label for="email" class="form-label"><span class="required-asterisk">*</span>Correo Electrónico</label>
+            <input type="email" class="form-control bg-dark text-light" id="email" placeholder="Ingresa un Correo electrónico válido" required>
+            <div class="invalid-feedback">
+              Por favor ingresa un correo electrónico válido.
+            </div>
+          </div>
+        </div>
 
-            <button type="submit" class="btn">
-                <i class="fa fa-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
-            </button>
-        </form>
+        <!-- Párrafo antes del botón -->
+        <p class="text-justify fw-bold fst-italic">
+          En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de INVERSIÓN.
+        </p>
+
+        <!-- Botón de WhatsApp -->
+        <button type="submit" class="btn whatsapp-button">
+          <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
+        </button>
+      </form>
     </div>
+  </div>
 
-    <script>
-        document.getElementById('formulario').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const date = document.getElementById('date').value;
+  <script>
+    // Validación Bootstrap
+    (function () {
+      'use strict';
 
-            if (!name.includes(' ')) {
-                alert('Por favor, ingresa tanto tu nombre como tu apellido.');
-                return;
-            }
+      const form = document.querySelector('#infoForm');
+      
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-            const birthDate = new Date(date);
-            const today = new Date();
-            const age = today.getFullYear() - birthDate.getFullYear();
-            if (age < 18) {
-                alert('Debes ser mayor de 18 años.');
-                return;
-            }
+        let valid = true;
 
-            const phone = '573194374583'; // Aquí puedes poner el teléfono dinámico que obtienes de Google Sheets.
+        // Validar Nombre y Apellido
+        const fullName = document.querySelector('#fullName');
+        const fullNameValue = fullName.value.trim().split(' ');
+        if (fullNameValue.length < 2) {
+          fullName.classList.add('is-invalid');
+          valid = false;
+        } else {
+          fullName.classList.remove('is-invalid');
+          fullName.classList.add('is-valid');
+        }
 
-            const whatsappUrl = `https://wa.me/${phone}?text=Hola, mi nombre es ${name} y mi correo es ${email}.`;
-            window.open(whatsappUrl, '_blank');
-        });
-    </script>
+        // Validar Fecha de Nacimiento (Mayor de 18 años)
+        const birthdate = document.querySelector('#birthdate');
+        const birthdateValue = new Date(birthdate.value);
+        const today = new Date();
+        let age = today.getFullYear() - birthdateValue.getFullYear();
+        const month = today.getMonth() - birthdateValue.getMonth();
+
+        if (month < 0 || (month === 0 && today.getDate() < birthdateValue.getDate())) {
+          age--;
+        }
+
+        if (age < 18) {
+          birthdate.classList.add('is-invalid');
+          valid = false;
+        } else {
+          birthdate.classList.remove('is-invalid');
+          birthdate.classList.add('is-valid');
+        }
+
+        // Validar Correo Electrónico
+        const email = document.querySelector('#email');
+        if (!email.checkValidity()) {
+          email.classList.add('is-invalid');
+          valid = false;
+        } else {
+          email.classList.remove('is-invalid');
+          email.classList.add('is-valid');
+        }
+
+        // Validar el formulario completo
+        if (valid && form.checkValidity()) {
+          // Redireccionar a WhatsApp con los datos si todo es válido
+          const whatsappURL = `https://wa.me/573194374583?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
+          window.open(whatsappURL, '_blank');
+        }
+      }, false);
+    })();
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
