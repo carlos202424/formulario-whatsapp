@@ -42,22 +42,23 @@
       font-weight: bold;
       text-align: justify;
     }
-    /* Estilo del logo con fondo degradado */
+    /* Estilo del contenedor con logo y fondo degradado */
     .logo-container {
-      background: linear-gradient(50deg, rgba(40,42,55,1) 50%, rgba(40,42,55,0.7)), url('images/bg.png');
+      background: linear-gradient(
+        50deg,
+        rgba(40,42,55,1) 50%,
+        rgba(40,42,55,0.7)
+        ),
+        url('https://i.imgur.com/iPItQOB.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       padding: 50px;
       width: 100%;
-      border-radius: 15px;
-      display: flex;
-      justify-content: flex-end;
+      border-radius: 25px;
       margin-top: 20px;
-    }
-    .logo-container img {
-      width: 50%; /* Mostrar la mitad derecha del logo */
-      border-radius: 15px;
+      display: block;
+      height: 200px; /* Ajusta la altura según prefieras */
     }
   </style>
 </head>
@@ -104,9 +105,7 @@
     </form>
 
     <!-- Contenedor del logo con fondo degradado dentro del formulario -->
-    <div class="logo-container">
-      <img src="https://i.imgur.com/iPItQOB.png" alt="Luxery Prime Agency Logo">
-    </div>
+    <div class="logo-container"></div>
   </div>
 </div>
 
