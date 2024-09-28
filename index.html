@@ -31,6 +31,9 @@
         .btn-whatsapp:hover {
             background-color: #128C7E;
         }
+        .text-danger {
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -42,18 +45,21 @@
             <div class="form-group">
                 <label for="name">Nombre y Apellido <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required>
+                <small class="form-text text-danger" id="nameError" style="display:none;"></small>
                 <small class="form-text text-muted">Hermosa por favor ingresa un solo nombre y un apellido (Reales).</small>
             </div>
 
             <div class="form-group">
                 <label for="date">Fecha de Nacimiento <span class="text-danger">*</span></label>
                 <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required>
+                <small class="form-text text-danger" id="dateError" style="display:none;"></small>
                 <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
 
             <div class="form-group">
                 <label for="email">Correo Electrónico <span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="email" placeholder="tucorreo@example.com" required>
+                <small class="form-text text-danger" id="emailError" style="display:none;"></small>
                 <small class="form-text text-muted">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
 
@@ -63,18 +69,43 @@
 
     <script>
         document.getElementById('submitBtn').addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const date = document.getElementById('date').value;
-            const email = document.getElementById('email').value;
+            // Limpiar errores previos
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('dateError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
 
-            // Validar campos
-            if (name && date && email) {
+            const name = document.getElementById('name').value.trim();
+            const date = document.getElementById('date').value;
+            const email = document.getElementById('email').value.trim();
+            let isValid = true;
+
+            // Validación de nombre
+            if (name === '' || name.split(' ').length < 2) {
+                document.getElementById('nameError').innerText = 'Por favor, ingresa un nombre y apellido válidos.';
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validación de fecha
+            if (!date) {
+                document.getElementById('dateError').innerText = 'Por favor, ingresa una fecha de nacimiento válida.';
+                document.getElementById('dateError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validación de correo
+            if (email === '') {
+                document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico válido.';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Si todo es válido, abrir WhatsApp
+            if (isValid) {
                 const message = `Nombre y Apellido: ${name}\nFecha de Nacimiento: ${date}\nCorreo Electrónico: ${email}`;
                 const phone = '573194374583'; // número de teléfono
                 const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
-            } else {
-                alert('Por favor completa todos los campos requeridos.');
             }
         });
     </script>
