@@ -17,7 +17,7 @@
         }
         .card {
             background-color: #222;
-            border-radius: 20px;
+            border-radius: 25px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .card-body {
@@ -51,7 +51,7 @@
                                 <label for="name">Nombre y Apellido:</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Nombre y apellido (Reales)" required pattern="^(\w+\s+\w+)+$">
                                 <div class="invalid-feedback">
-                                    Por favor, ingresa tu nombre y apellido (al menos dos palabras).
+                                    Por favor, ingresa tu nombre y apellido (Reales sin espacio en blanco al final).
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,7 +120,7 @@
                 age--;
             }
             if (age < 18) {
-                alert('Debes ser mayor de 18 años para enviar este formulario.');
+                alert('Debes ser mayor de 18 años para realizar la Solicitud.');
                 return false;
             }
 
@@ -130,7 +130,7 @@
                 return false;
             }
 
-            // Formatear la fecha a dd/mm/yyyy
+            // Formatear la fecha a dd-mm-yyyy
             var formattedDate = birthDate.getDate() + '-' + (birthDate.getMonth() + 1) + '-' + birthDate.getFullYear();
 
             var message = `Solicitud de Información%0A%0ANombre y apellido(s): ${name.toLowerCase()}%0AFecha de Nacimiento: ${formattedDate}%0ACorreo electrónico: ${email.toLowerCase()}`;
