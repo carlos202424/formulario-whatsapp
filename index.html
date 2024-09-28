@@ -15,6 +15,7 @@
       padding: 20px;
       border-radius: 15px;
       margin-top: 30px;
+      position: relative;
     }
     .form-title {
       text-align: center;
@@ -41,21 +42,22 @@
       font-weight: bold;
       text-align: justify;
     }
-    /* Estilo para el logo con fondo degradado */
+    /* Estilo del logo con fondo degradado */
     .logo-container {
       background: linear-gradient(50deg, rgba(40,42,55,1) 50%, rgba(40,42,55,0.7)), url('images/bg.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       padding: 50px;
-      width: 500px;
-      border-radius: 25px;
-      margin: 30px auto;
-      transform: translateX(50%); /* Muestra solo la mitad derecha */
+      width: 100%;
+      border-radius: 15px;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
     }
     .logo-container img {
-      width: 100%; /* Ajustar la imagen a todo el ancho del contenedor */
-      transform: translateX(50%); /* Mostrar la mitad derecha */
+      width: 50%; /* Mostrar la mitad derecha del logo */
+      border-radius: 15px;
     }
   </style>
 </head>
@@ -100,11 +102,11 @@
         <i class="fab fa-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
       </button>
     </form>
-  </div>
 
-  <!-- Contenedor del logo con fondo y la mitad derecha visible -->
-  <div class="logo-container">
-    <img src="https://i.imgur.com/iPItQOB.png" alt="Luxery Prime Agency Logo">
+    <!-- Contenedor del logo con fondo degradado dentro del formulario -->
+    <div class="logo-container">
+      <img src="https://i.imgur.com/iPItQOB.png" alt="Luxery Prime Agency Logo">
+    </div>
   </div>
 </div>
 
