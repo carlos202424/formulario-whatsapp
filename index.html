@@ -36,16 +36,26 @@
       color: red;
       margin-left: 5px;
     }
-    .half-logo {
-      display: block;
-      margin: 0 auto;
-      transform: translateX(50%); /* Muestra solo la mitad derecha */
-      width: 50%;
-    }
     .info-paragraph {
       font-style: italic;
       font-weight: bold;
       text-align: justify;
+    }
+    /* Estilo para el logo con fondo degradado */
+    .logo-container {
+      background: linear-gradient(50deg, rgba(40,42,55,1) 50%, rgba(40,42,55,0.7)), url('images/bg.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 50px;
+      width: 500px;
+      border-radius: 25px;
+      margin: 30px auto;
+      transform: translateX(50%); /* Muestra solo la mitad derecha */
+    }
+    .logo-container img {
+      width: 100%; /* Ajustar la imagen a todo el ancho del contenedor */
+      transform: translateX(50%); /* Mostrar la mitad derecha */
     }
   </style>
 </head>
@@ -92,8 +102,10 @@
     </form>
   </div>
 
-  <!-- Logo mostrado a la mitad -->
-  <img src="https://i.imgur.com/iPItQOB.png" alt="Luxery Prime Agency Logo" class="half-logo">
+  <!-- Contenedor del logo con fondo y la mitad derecha visible -->
+  <div class="logo-container">
+    <img src="https://i.imgur.com/iPItQOB.png" alt="Luxery Prime Agency Logo">
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
