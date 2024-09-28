@@ -16,6 +16,7 @@
       border-radius: 15px;
       margin-top: 30px;
       position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .form-title {
       text-align: center;
@@ -56,15 +57,20 @@
       padding: 50px;
       width: 100%;
       border-radius: 25px;
-      margin-top: 20px;
+      margin-top: -20px;
       display: block;
-      height: 200px; /* Ajusta la altura según prefieras */
+      height: 200px;
+    }
+    .form-wrapper {
+      max-width: 1000px;
+      margin: auto;
+      padding-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="form-wrapper">
   <div class="form-container">
     <!-- Título del formulario -->
     <h1 class="form-title">Luxery Prime Agency</h1>
@@ -103,10 +109,10 @@
         <i class="fab fa-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
       </button>
     </form>
-
-    <!-- Contenedor del logo con fondo degradado dentro del formulario -->
-    <div class="logo-container"></div>
   </div>
+
+  <!-- Contenedor del logo con fondo degradado debajo del formulario -->
+  <div class="logo-container"></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
