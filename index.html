@@ -1,149 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Solicitud de Información</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #212529;
-      color: white;
-    }
-    .required-asterisk {
-      color: red;
-      margin-right: 5px;
-    }
-    .form-container {
-      background-color: #343a40;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-      margin-top: 30px;
-    }
-    .whatsapp-button {
-      background-color: #25D366;
-      color: white;
-      width: 100%;
-    }
-    .whatsapp-button i {
-      margin-right: 8px;
-    }
-    .form-title {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactanos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #555764;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-content {
+            background-color: rgba(40, 42, 55, 0.8);
+            padding: 50px;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 25px;
+            color: #f4f6f9;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="form-container">
-      <!-- Título del formulario -->
-      <div class="form-title">Luxery Prime Agency</div>
-      
-      <form id="infoForm" novalidate>
-        <div class="row">
-          <!-- Nombre y Apellido -->
-          <div class="col-md-12 mb-3">
-            <label for="fullName" class="form-label"><span class="required-asterisk">*</span>Nombre y Apellido</label>
-            <input type="text" class="form-control bg-dark text-light" id="fullName" placeholder="Ingresa Nombre y Apellido" required>
-            <div class="form-text text-light">
-              Hermosa por favor ingresa un solo nombre y un apellido <strong>(Reales)</strong>
+    <div class="form-content">
+        <h2 class="text-center">Luxery Prime Agency</h2>
+        <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para Luxery Prime Agency y jamás serán revelados.</p>
+        <p class="font-italic font-weight-bold">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Nombre y Apellido <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required>
+                <small class="form-text text-muted">Hermosa por favor ingresa un solo nombre y un apellido (Reales).</small>
             </div>
-            <div class="invalid-feedback">
-              Por favor ingresa un nombre y un apellido válidos.
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <!-- Fecha de Nacimiento -->
-          <div class="col-md-6 mb-3">
-            <label for="birthdate" class="form-label"><span class="required-asterisk">*</span>Fecha de Nacimiento</label>
-            <input type="date" class="form-control bg-dark text-light" id="birthdate" placeholder="Ingrese fecha de Nacimiento" required>
-            <div class="form-text text-light">
-              Ingresa tu fecha de nacimiento <strong>(Real)</strong>
+            <div class="form-group">
+                <label for="date">Fecha de Nacimiento <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required>
+                <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
-            <div class="invalid-feedback">
-              Debes ser mayor de 18 años.
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" placeholder="tucorreo@example.com" required>
+                <small class="form-text text-muted">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
-          </div>
 
-          <!-- Correo Electrónico -->
-          <div class="col-md-6 mb-3">
-            <label for="email" class="form-label"><span class="required-asterisk">*</span>Correo Electrónico</label>
-            <input type="email" class="form-control bg-dark text-light" id="email" placeholder="Ingresa un Correo electrónico válido" required>
-            <div class="invalid-feedback">
-              Por favor ingresa un correo electrónico válido.
-            </div>
-          </div>
-        </div>
-
-        <!-- Párrafo antes del botón -->
-        <p class="text-justify fw-bold fst-italic">
-          En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de INVERSIÓN.
-        </p>
-
-        <!-- Botón de WhatsApp -->
-        <button type="submit" class="btn whatsapp-button">
-          <i class="bi bi-whatsapp"></i> Solicitar información de la aplicación por WhatsApp
-        </button>
-      </form>
+            <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">Enviar</button>
+        </form>
     </div>
-  </div>
 
-  <script>
-    // Validación Bootstrap
-    (function () {
-      'use strict';
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const email = document.getElementById('email').value;
 
-      const form = document.querySelector('#infoForm');
-      
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        // Validar Nombre y Apellido
-        const fullName = document.querySelector('#fullName');
-        const fullNameValue = fullName.value.trim().split(' ');
-        if (fullNameValue.length < 2) {
-          fullName.classList.add('is-invalid');
-        } else {
-          fullName.classList.remove('is-invalid');
-          fullName.classList.add('is-valid');
-        }
-
-        // Validar Fecha de Nacimiento (Mayor de 18 años)
-        const birthdate = document.querySelector('#birthdate');
-        const birthdateValue = new Date(birthdate.value);
-        const today = new Date();
-        const age = today.getFullYear() - birthdateValue.getFullYear();
-        const month = today.getMonth() - birthdateValue.getMonth();
-
-        if (month < 0 || (month === 0 && today.getDate() < birthdateValue.getDate())) {
-          age--;
-        }
-
-        if (age < 18) {
-          birthdate.classList.add('is-invalid');
-        } else {
-          birthdate.classList.remove('is-invalid');
-          birthdate.classList.add('is-valid');
-        }
-
-        // Validar el formulario completo
-        if (form.checkValidity()) {
-          // Redireccionar a WhatsApp con los datos si todo es válido
-          const whatsappURL = `https://wa.me/573194374583?text=Nombre: ${fullName.value}%0AFecha de Nacimiento: ${birthdate.value}%0ACorreo: ${email.value}`;
-          window.open(whatsappURL, '_blank');
-        }
-      }, false);
-    })();
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+            // Validar campos
+            if (name && date && email) {
+                const message = `Nombre y Apellido: ${name}\nFecha de Nacimiento: ${date}\nCorreo Electrónico: ${email}`;
+                const phone = '573194374583'; // número de teléfono
+                const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+                window.open(waUrl, '_blank');
+            } else {
+                alert('Por favor completa todos los campos requeridos.');
+            }
+        });
+    </script>
 </body>
 </html>
