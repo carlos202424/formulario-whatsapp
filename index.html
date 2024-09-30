@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactanos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -37,38 +38,41 @@
     </style>
 </head>
 <body>
-    <div class="form-content">
+    <div class="form-content " >
         <h2 class="text-center">Luxery Prime Agency</h2>
-        <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para Luxery Prime Agency y jamás serán revelados.</p>
+        <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
         <p class="font-italic font-weight-bold">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
         <hr>
         <form id="contactForm">
             <div class="form-group">
-                <label for="name">Nombre y Apellido <span class="text-danger">*</span></label>
+                <label for="name"><span class="text-danger">*</span> Nombre y Apellido </label>
                 <input type="text" autocomplete="on" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required>
                 <small class="form-text text-danger" id="nameError" style="display:none;"></small>
                 <small class="form-text text-muted">Hermosa por favor ingresa un solo nombre y un apellido (Reales).</small>
             </div>
 
             <div class="form-group">
-                <label for="date">Fecha de Nacimiento <span class="text-danger">*</span></label>
+                <label for="date"><span class="text-danger">*</span> Fecha de Nacimiento </label>
                 <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required>
                 <small class="form-text text-danger" id="dateError" style="display:none;"></small>
                 <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
 
             <div class="form-group">
-                <label for="email">Correo Electrónico <span class="text-danger">*</span></label>
+                <label for="email"><span class="text-danger">*</span> Correo Electrónico</label>
                 <input type="email" autocomplete="on" class="form-control" id="email" placeholder="tucorreo@example.com" required>
                 <small class="form-text text-danger" id="emailError" style="display:none;"></small>
                 <small class="form-text text-muted">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
             <hr>
-            <p>En Luxery Prime Agency JAMAS te pediremos realizar ningún tipo de INVERSIÓN.</p>
+            <div class="alert alert-warning" role="alert">En Luxery Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
             <hr>
 
 
-            <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">Enviar</button>
+            <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">
+                <i class="bi bi-whatsapp"></i> Solicitar información de la App por WhatsApp
+            </button>
+              
         </form>
     </div>
 
@@ -102,7 +106,7 @@
 
             // Validación de nombre
             if (name === '' || name.split(' ').length < 2) {
-                document.getElementById('nameError').innerText = 'Por favor, ingresa un nombre y apellido válidos.';
+                document.getElementById('nameError').innerText = 'Por favor, ingresa un nombre y un apellido válidos.';
                 document.getElementById('nameError').style.display = 'block';
                 isValid = false;
             }
