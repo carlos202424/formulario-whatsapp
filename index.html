@@ -41,6 +41,7 @@
         <h2 class="text-center">Luxery Prime Agency</h2>
         <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para Luxery Prime Agency y jamás serán revelados.</p>
         <p class="font-italic font-weight-bold">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
+        <hr>
         <form id="contactForm">
             <div class="form-group">
                 <label for="name">Nombre y Apellido <span class="text-danger">*</span></label>
@@ -51,7 +52,7 @@
 
             <div class="form-group">
                 <label for="date">Fecha de Nacimiento <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required >
+                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required>
                 <small class="form-text text-danger" id="dateError" style="display:none;"></small>
                 <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
@@ -62,6 +63,10 @@
                 <small class="form-text text-danger" id="emailError" style="display:none;"></small>
                 <small class="form-text text-muted">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
+            <hr>
+            <p>En Luxery Prime Agency JAMAS te pediremos realizar ningún tipo de INVERSIÓN.</p>
+            <hr>
+
 
             <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">Enviar</button>
         </form>
@@ -90,7 +95,7 @@
             document.getElementById('dateError').style.display = 'none';
             document.getElementById('emailError').style.display = 'none';
 
-            const name = document.getElementById('name').value.trim();
+            let name = document.getElementById('name').value.trim().toLowerCase(); // Convertir nombre a minúsculas
             const date = document.getElementById('date').value;
             let email = document.getElementById('email').value.trim().toLowerCase(); // Convertir correo a minúsculas
             let isValid = true;
@@ -119,7 +124,7 @@
             // Si todo es válido, abrir WhatsApp con el mensaje formateado
             if (isValid) {
                 const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-                const message = `Solicitud de Información\n\nDatos de Contacto\n\nNombre y Apellido: ${name}\nFecha de Nacimiento: ${formattedDate}\nCorreo Electrónico: ${email}`;
+                const message = `*Solicitud de Información*\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}`;
                 const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
             }
