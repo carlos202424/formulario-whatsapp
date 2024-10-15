@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactanos</title>
+    <title>Luxery Prime Agency - Aprende a ser Streamer en Tiempo Récord</title>
+    <meta name="description" content="Únete a Luxery Prime Agency y aprende a ser streamer en tiempo récord. Completa nuestro formulario para más información.">
+    <meta name="keywords" content="Luxery Prime Agency, streamer, aprender a ser streamer, formulario de contacto">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -16,14 +18,54 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
         }
         .form-content {
-            background-color: rgba(40, 42, 55, 0.8);
-            padding: 50px;
             width: 100%;
             max-width: 600px;
+            padding: 50px;
             border-radius: 25px;
             color: #f4f6f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Estilos de la tarjeta */
+            display: flex;
+            flex-direction: column; /* Asegura que los elementos sean verticales */
+            align-items: center;
+            gap: 10px;
+            background-color: red;
+            position: relative;
+            cursor: pointer;
+            font-weight: 900;
+            transition-duration: .2s;
+            background: linear-gradient(0deg, #000, #272727);
+        }
+        .form-content:before, .form-content:after {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+                #0000ff, #00ff00,#ffff00, #ff0000);
+            background-size: 400%;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            z-index: -1;
+            animation: steam 20s linear infinite;
+        }
+        .form-content:after {
+            filter: blur(100px);
+        }
+        @keyframes steam {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 400% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
         }
         .btn-whatsapp {
             background-color: #25D366;
@@ -38,30 +80,30 @@
     </style>
 </head>
 <body>
-    <div class="form-content " >
+    <div class="form-content">
         <h1 class="text-center">Luxery Prime Agency</h1>
         <hr>
         <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
         <p class="font-italic font-weight-bold">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
         <hr>
         <form id="contactForm">
-            <div class="form-group class="mb-3"">
+            <div class="form-group mb-3">
                 <label for="name"><span class="text-danger">*</span> Nombre y Apellido </label>
-                <input type="text" autocomplete="on" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required>
+                <input type="text" autocomplete="on" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required aria-describedby="nameError">
                 <small class="form-text text-danger" id="nameError" style="display:none;"></small>
-                <small class="form-text text-muted">Hermosa por favor ingresa un solo nombre y un apellido (Reales).</small>
+                <small class="form-text text-muted">Por favor ingresa un solo nombre y un apellido (Reales).</small>
             </div>
 
-            <div class="form-group class="mb-3"">
+            <div class="form-group mb-3">
                 <label for="date"><span class="text-danger">*</span> Fecha de Nacimiento </label>
-                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required>
+                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required aria-describedby="dateError">
                 <small class="form-text text-danger" id="dateError" style="display:none;"></small>
                 <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
 
-            <div class="form-group class="mb-3"">
+            <div class="form-group mb-3">
                 <label for="email"><span class="text-danger">*</span> Correo Electrónico</label>
-                <input type="email" autocomplete="on" class="form-control" id="email" placeholder="tucorreo@example.com" required>
+                <input type="email" autocomplete="on" class="form-control" id="email" placeholder="tucorreo@example.com" required aria-describedby="emailError">
                 <small class="form-text text-danger" id="emailError" style="display:none;"></small>
                 <small class="form-text text-muted">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
@@ -69,29 +111,25 @@
             <div class="alert alert-warning" role="alert">En Luxery Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
             <hr>
 
-
             <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">
                 <i class="bi bi-whatsapp"></i> Solicitar información de la App por WhatsApp
             </button>
-              
         </form>
     </div>
 
     <script>
         // Fetch para obtener el número de teléfono desde la API de Google Apps Script
-        let phone = '';
+        let phone = '573115950646'; // Número por defecto
 
         fetch('https://script.google.com/macros/s/AKfycbzYrmE35mMU9ZNa_osXzPhNh4Dej1e8BPZcte29mn251wwZWWZAJkbbyIMqa0gxO73R/exec')
             .then(response => response.text()) // Cambiamos a .text() si el valor es simple
             .then(data => {
-                if (data) {
+                if (data.trim()) {
                     phone = data.trim(); // Asignamos el valor directamente si existe
-                } else {
-                    phone = '573115950646'; // Número por defecto si no se encuentra
                 }
             })
-            .catch(error => {
-                phone = '573115950646'; // Número por defecto si hay error
+            .catch(() => {
+                console.error('Error al obtener el número de teléfono, usando el número por defecto.');
             });
 
         document.getElementById('submitBtn').addEventListener('click', function() {
