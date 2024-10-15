@@ -23,7 +23,7 @@
         .form-content {
             width: 100%;
             max-width: 600px;
-            padding: 50px;
+            padding: 100px 80px; /* Aumenta el padding superior/inferior y lateral */
             border-radius: 25px;
             color: #f4f6f9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@
             background-size: 400%;
             width: calc(100% + 4px);
             height: calc(100% + 4px);
-            z-index: -1;
+            z-index: -1; /* Asegúrate de que el z-index sea menor que el de .form-content */
             animation: steam 20s linear infinite;
         }
         .form-content:after {
