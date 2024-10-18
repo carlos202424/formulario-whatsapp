@@ -27,17 +27,15 @@
             border-radius: 25px;
             color: #f4f6f9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Estilos de la tarjeta */
             display: flex;
             flex-direction: column; /* Asegura que los elementos sean verticales */
             align-items: center;
             gap: 10px;
-            background-color: red;
+            background: linear-gradient(0deg, #000, #272727);
             position: relative;
             cursor: pointer;
             font-weight: 900;
             transition-duration: .2s;
-            background: linear-gradient(0deg, #000, #272727);
         }
         .form-content:before, .form-content:after {
             content: '';
@@ -70,12 +68,26 @@
         .btn-whatsapp {
             background-color: #25D366;
             color: white;
+            width: 75%; /* Establece el ancho del botón al 75% */
+            margin: 0 auto; /* Centra el botón */
         }
         .btn-whatsapp:hover {
             background-color: #128C7E;
         }
         .text-danger {
             font-size: 0.85rem;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .shake {
+            animation: shake 0.5s infinite; /* Duración de la animación y que se repita indefinidamente */
         }
     </style>
 </head>
@@ -111,7 +123,7 @@
             <div class="alert alert-warning" role="alert">En Luxery Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
             <hr>
 
-            <button type="button" class="btn btn-whatsapp btn-block" id="submitBtn">
+            <button type="button" class="btn btn-whatsapp btn-block shake" id="submitBtn">
                 <i class="bi bi-whatsapp"></i> Solicitar información de la App por WhatsApp
             </button>
         </form>
