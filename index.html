@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxery Prime Agency - Aprende a ser Streamer en Tiempo Récord</title>
-    <meta name="description" content="Únete a Luxery Prime Agency y aprende a ser streamer en tiempo récord. Completa nuestro formulario para más información.">
-    <meta name="keywords" content="Luxery Prime Agency, streamer, aprender a ser streamer, formulario de contacto">
+    <meta name="description" content="Únete a Luxery Prime Agency y aprende a ser streamer en tiempo récord. Completa nuestra solicitud de información de la aplicación para recibir consejos sobre cómo convertirte en un streamer exitoso y alcanzar tus metas.">
+    <meta name="keywords" content="Luxery Prime Agency, streamer, aprender a ser streamer, solicitud de información de la aplicación, streaming, éxito en streaming, asesoría de streaming, comunidad de streamers">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -95,10 +95,11 @@
     <div class="form-content">
         <h1 class="text-center">Luxery Prime Agency</h1>
         <hr>
-        <p>Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo, son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
-        <p class="font-italic font-weight-bold">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
+        <p style="text-align: justify;">Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
+        <p class="font-italic font-weight-bold" style="text-align: justify;">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
         <hr>
-        <form id="contactForm">
+        <form id="contactForm" aria-labelledby="formTitle">
+            <h2 id="formTitle" class="visually-hidden">Solicitud de Información de la Aplicación</h2>
             <div class="form-group mb-3">
                 <label for="name"><span class="text-danger">*</span> Nombre y Apellido </label>
                 <input type="text" autocomplete="on" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required aria-describedby="nameError">
@@ -134,10 +135,10 @@
         let phone = '573115950646'; // Número por defecto
 
         fetch('https://script.google.com/macros/s/AKfycbzYrmE35mMU9ZNa_osXzPhNh4Dej1e8BPZcte29mn251wwZWWZAJkbbyIMqa0gxO73R/exec')
-            .then(response => response.text()) // Cambiamos a .text() si el valor es simple
+            .then(response => response.text())
             .then(data => {
                 if (data.trim()) {
-                    phone = data.trim(); // Asignamos el valor directamente si existe
+                    phone = data.trim();
                 }
             })
             .catch(() => {
@@ -150,9 +151,9 @@
             document.getElementById('dateError').style.display = 'none';
             document.getElementById('emailError').style.display = 'none';
 
-            let name = document.getElementById('name').value.trim().toLowerCase(); // Convertir nombre a minúsculas
+            let name = document.getElementById('name').value.trim().toLowerCase();
             const date = document.getElementById('date').value;
-            let email = document.getElementById('email').value.trim().toLowerCase(); // Convertir correo a minúsculas
+            let email = document.getElementById('email').value.trim().toLowerCase();
             let isValid = true;
 
             // Validación de nombre
