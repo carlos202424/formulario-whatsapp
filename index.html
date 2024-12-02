@@ -121,7 +121,7 @@
 
             <div class="form-group mb-3">
                 <label for="date"><span class="text-danger">*</span> Fecha de Nacimiento </label>
-                <input type="date" class="form-control" id="date" min="1973-01-01" max="2005-12-31" required aria-describedby="dateError">
+                <input type="date" class="form-control" id="date" required aria-describedby="dateError">
                 <small class="form-text text-danger" id="dateError" style="display:none;"></small>
                 <small class="form-text text-muted">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
@@ -143,6 +143,26 @@
     </div>
 
     <script>
+        // Establecer las fechas mínimas y máximas para el selector de fecha
+        window.onload = function() {
+            const today = new Date();
+            const minDate = new Date();
+            const maxDate = new Date();
+
+            // Calcular la fecha mínima (18 años atrás)
+            minDate.setFullYear(today.getFullYear() - 18);
+            // Calcular la fecha máxima (50 años atrás)
+            maxDate.setFullYear(today.getFullYear() - 50);
+
+            // Formatear las fechas a 'YYYY-MM-DD'
+            const minDateString = minDate.toISOString().split('T')[0];
+            const maxDateString = maxDate.toISOString().split('T')[0];
+
+            // Asignar las fechas al input
+            document.getElementById('date').setAttribute('min', maxDateString);
+            document.getElementById('date').setAttribute('max', minDateString);
+        };
+
         // Fetch para obtener el número de teléfono desde la API de Google Apps Script
         let phone = '573115950646'; // Número por defecto
 
