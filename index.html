@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conviértete en un Streamer de Éxito con Luxery Prime Agency</title>
+    <title>Conviértete en un Streamer de Éxito con Luxury Prime Agency</title>
     <meta name="description" content="¿Quieres aprender a ser un streamer exitoso? ¡Únete a Luxury Prime Agency y domina el mundo del streaming en tiempo récord! Completa nuestra solicitud de información de la aplicación y recibe consejos invaluables de nuestros expertos.">
     <meta name="keywords" content="streamer de éxito, aprender a ser streamer, consejos para ser streamer, convertirse en streamer, plataformas de streaming">
     <link rel="icon" href="https://www.google.com/favicon.ico" type="image/x-icon"> <!-- Favicon de Google -->
@@ -105,9 +105,9 @@
 </head>
 <body>
     <div class="form-content">
-        <h1 class="text-center">Luxury Prime Agency</h1>
+        <h1 class="text-center">Luxery Prime Agency</h1>
         <hr>
-        <p style="text-align: justify;">Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo son de uso exclusivo para <strong>Luxury Prime Agency</strong> y jamás serán revelados.</p>
+        <p style="text-align: justify;">Es importante diligenciar este formulario para facilitar el envío de la información. Los datos suministrados dentro del mismo son de uso exclusivo para <strong>Luxery Prime Agency</strong> y jamás serán revelados.</p>
         <p class="font-italic font-weight-bold" style="text-align: justify;">Toma en consideración que si empiezas a trabajar con nosotros y los datos que suministras en este formulario son FALSOS, tu pago se puede demorar en llegar.</p>
         <hr>
         <form id="contactForm" aria-labelledby="formTitle">
@@ -134,9 +134,8 @@
             </div>
 
             <input type="hidden" id="userIP" name="userIP">
-            <input type="hidden" id="userLocation" name="userLocation">
             <hr>
-            <div class="alert alert-warning" role="alert">En Luxury Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
+            <div class="alert alert-warning" role="alert">En Luxery Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
             <hr>
 
             <button type="button" class="btn btn-whatsapp btn-block shake" id="submitBtn">
@@ -158,18 +157,6 @@
             .catch(() => {
                 console.error('Error al obtener la dirección IP.');
             });
-
-        // Obtener la ubicación del usuario
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const { latitude, longitude } = position.coords;
-                document.getElementById('userLocation').value = `${latitude}, ${longitude}`; // Asignar la ubicación al campo oculto
-            }, () => {
-                console.error('Error al obtener la ubicación.');
-            });
-        } else {
-            console.error('Geolocalización no es soportada por este navegador.');
-        }
 
         // Establecer las fechas mínimas y máximas para el selector de fecha
         window.onload = function() {
@@ -203,7 +190,6 @@
             })
             .catch(() => {
                 console.error('Error al obtener el número de teléfono, usando el número por defecto.');
-                alert('No se pudo obtener el número de teléfono, se usará el número por defecto.');
             });
 
         document.getElementById('submitBtn').addEventListener('click', function() {
@@ -232,17 +218,23 @@
             }
 
             // Validación de correo
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
-            if (email === '' || !emailRegex.test(email)) {
-                document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico válido.';
+            if (email === '') {
+                document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico.';
                 document.getElementById('emailError').style.display = 'block';
                 isValid = false;
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico válido.';
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
             }
 
             // Si todo es válido, abrir WhatsApp con el mensaje formateado
             if (isValid) {
                 const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-                const message = `*Solicitud de Información*\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}\nNúmero de Solicitud : ${requestId}`;
+                const message = `*Solicitud de Información*\n\n> Número de Solicitud : ${requestId}\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}`;
                 const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
             }
