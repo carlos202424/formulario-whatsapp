@@ -233,7 +233,7 @@
 
             // Si todo es válido, abrir WhatsApp con el mensaje formateado
             if (isValid) {
-                const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+                const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/-/g, '/');
                 const message = `*Solicitud de Información*\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}\n\n> Número de Solicitud : ${requestId}`;
                 const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
