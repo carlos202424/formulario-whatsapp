@@ -132,6 +132,9 @@
                 <small class="form-text text-danger" id="emailError" style="display:none;"></small>
                 <small class="form-text text-muted" id="emailHelp">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
+
+            <input type="hidden" id="userIP" name="userIP">
+            <input type="hidden" id="userLocation" name="userLocation">
             <hr>
             <div class="alert alert-warning" role="alert">En Luxury Prime Agency <strong>JAMAS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.</div>
             <hr>
@@ -143,6 +146,31 @@
     </div>
 
     <script>
+        let requestId = ''; // Variable para almacenar el ID de solicitud
+
+        // Obtener la dirección IP del usuario
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const ip = data.ip; // Obtener la IP
+                requestId = `ID-${ip.replace(/\./g, '-')}`; // Formatear la IP como ID
+            })
+            .catch(() => {
+                console.error('Error al obtener la dirección IP.');
+            });
+
+        // Obtener la ubicación del usuario
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                document.getElementById('userLocation').value = `${latitude}, ${longitude}`; // Asignar la ubicación al campo oculto
+            }, () => {
+                console.error('Error al obtener la ubicación.');
+            });
+        } else {
+            console.error('Geolocalización no es soportada por este navegador.');
+        }
+
         // Establecer las fechas mínimas y máximas para el selector de fecha
         window.onload = function() {
             const today = new Date();
@@ -214,7 +242,7 @@
             // Si todo es válido, abrir WhatsApp con el mensaje formateado
             if (isValid) {
                 const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-                const message = `*Solicitud de Información*\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}`;
+                const message = `*Solicitud de Información*\n\n_Datos de Contacto_\n\nNombre y apellido(s) : ${name}\nFecha de Nacimiento : ${formattedDate}\nCorreo electrónico : ${email}\nNúmero de Solicitud : ${requestId}`;
                 const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
             }
