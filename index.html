@@ -388,17 +388,138 @@
                 isValid = false;
             }
 
-            // Validación de correo
+            // Validación de correo - VERSIÓN MEJORADA
             if (email === '') {
                 document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico.';
                 document.getElementById('emailError').style.display = 'block';
                 isValid = false;
             } else {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
+                // Expresión regular más estricta para validación de email
+                const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                
+                // Verificar si cumple con el formato básico
                 if (!emailRegex.test(email)) {
-                    document.getElementById('emailError').innerText = 'Por favor, ingresa un correo electrónico válido.';
+                    document.getElementById('emailError').innerText = 'El formato del correo electrónico no es válido.';
                     document.getElementById('emailError').style.display = 'block';
                     isValid = false;
+                } 
+                // Verificar longitud máxima
+                else if (email.length > 254) {
+                    document.getElementById('emailError').innerText = 'El correo electrónico es demasiado largo (máximo 254 caracteres).';
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                // Verificar que el nombre de usuario no sea demasiado largo
+                else if (email.split('@')[0].length > 64) {
+                    document.getElementById('emailError').innerText = 'El nombre de usuario del correo es demasiado largo (máximo 64 caracteres).';
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                // Verificar que la extensión del dominio sea válida
+                else {
+                    const domainPart = email.split('@')[1];
+                    const extension = domainPart.substring(domainPart.lastIndexOf('.') + 1).toLowerCase();
+                    
+                    // Lista de extensiones válidas (TLDs)
+                    const validExtensions = [
+                        // Genéricos comunes
+                        'com', 'net', 'org', 'edu', 'gov', 'mil', 'info', 'biz', 'name', 'pro', 
+                        'mobi', 'app', 'io', 'co', 'me', 'tv', 'xyz', 'site', 'online', 'store',
+                        'blog', 'club', 'design', 'dev', 'digital', 'host', 'life', 'live', 'news',
+                        'shop', 'tech', 'website', 'world', 'zone', 'email', 'academy', 'agency',
+                        'business', 'center', 'cloud', 'company', 'computer', 'consulting', 'global',
+                        'group', 'ink', 'international', 'lawyer', 'ltd', 'marketing', 'media', 'partners',
+                        'photography', 'solutions', 'support', 'systems', 'team', 'technology', 'tools',
+                        'university', 'vision', 'works',
+                        
+                        // América del Norte
+                        'us', 'ca', 'mx',
+                        
+                        // América Central
+                        'bz', 'cr', 'sv', 'gt', 'hn', 'ni', 'pa', 
+                        
+                        // Caribe
+                        'cu', 'do', 'ht', 'jm', 'pr', 'tt', 'bs', 'bb', 'dm', 'gd', 'ag', 'kn', 'lc', 'vc', 'ai', 'vg', 'tc', 'ms',
+                        
+                        // América del Sur
+                        'ar', 'bo', 'br', 'cl', 'co', 'ec', 'gy', 'py', 'pe', 'sr', 'uy', 've', 'gf', 'fk',
+                        
+                        // Resto del Mundo (importantes)
+                        'uk', 'eu', 'au', 'ch', 'cn', 'de', 'dk', 'es', 'fr', 'in', 'it', 'jp', 'kr', 
+                        'nl', 'no', 'nz', 'pl', 'pt', 'ro', 'ru', 'se', 'za', 'sg', 'th', 'tr', 'ua', 'vn',
+                        
+                        // Multi-nivel América del Norte
+                        'com.mx', 'gob.mx', 'edu.mx', 'net.mx', 'org.mx',
+                        'gc.ca', 'co.us', 'k12.us', 'edu.us', 'fed.us', 'state.us',
+                        
+                        // Multi-nivel América Central y Caribe
+                        'co.cr', 'fi.cr', 'or.cr', 'ed.cr', 'ac.cr', 'go.cr', 'sa.cr',
+                        'gob.gt', 'edu.gt', 'ind.gt', 'com.gt', 'net.gt', 'org.gt', 'mil.gt',
+                        'gob.hn', 'edu.hn', 'org.hn', 'com.hn', 'net.hn', 'mil.hn',
+                        'gob.ni', 'edu.ni', 'org.ni', 'com.ni', 'net.ni', 'nom.ni',
+                        'gob.pa', 'edu.pa', 'org.pa', 'com.pa', 'net.pa', 'abo.pa', 'ing.pa', 'med.pa',
+                        'gob.sv', 'edu.sv', 'com.sv', 'org.sv', 'red.sv',
+                        'com.do', 'net.do', 'org.do', 'gob.do', 'edu.do', 'web.do', 'art.do', 'sld.do',
+                        'edu.cu', 'gov.cu', 'inf.cu', 'net.cu', 'org.cu', 'com.cu',
+                        'edu.pr', 'gov.pr', 'net.pr', 'org.pr', 'com.pr',
+                        'com.jm', 'net.jm', 'org.jm', 'gov.jm', 'edu.jm',
+                        'com.ht', 'net.ht', 'org.ht', 'edu.ht', 'gouv.ht', 'perso.ht',
+                        
+                        // Multi-nivel América del Sur
+                        'com.ar', 'gov.ar', 'org.ar', 'edu.ar', 'mil.ar', 'net.ar', 'tur.ar', 'musica.ar',
+                        'com.bo', 'gob.bo', 'edu.bo', 'org.bo', 'net.bo', 'tv.bo', 'mil.bo', 'int.bo',
+                        'com.br', 'net.br', 'org.br', 'gov.br', 'edu.br', 'mil.br', 'art.br', 'esp.br', 'ind.br', 'adm.br', 'adv.br',
+                        'cl', 'gov.cl', 'gob.cl', 'co.cl', 'mil.cl', 'net.cl', 'org.cl',
+                        'com.co', 'net.co', 'nom.co', 'edu.co', 'org.co', 'gov.co', 'mil.co',
+                        'com.ec', 'info.ec', 'net.ec', 'fin.ec', 'med.ec', 'gov.ec', 'edu.ec', 'gob.ec',
+                        'com.py', 'edu.py', 'gov.py', 'mil.py', 'net.py', 'org.py',
+                        'com.pe', 'edu.pe', 'gob.pe', 'mil.pe', 'net.pe', 'org.pe', 'nom.pe',
+                        'com.uy', 'edu.uy', 'gub.uy', 'org.uy', 'net.uy', 'mil.uy',
+                        'co.ve', 'com.ve', 'edu.ve', 'gob.ve', 'info.ve', 'mil.ve', 'net.ve', 'org.ve', 'web.ve',
+                        
+                        // Multi-nivel resto del mundo
+                        'co.uk', 'org.uk', 'gov.uk', 'ac.uk', 'me.uk', 'sch.uk', 'net.uk',
+                        'com.au', 'net.au', 'org.au', 'edu.au', 'gov.au', 'asn.au', 'id.au',
+                        'co.nz', 'net.nz', 'org.nz', 'govt.nz', 'school.nz', 'ac.nz',
+                        'co.za', 'org.za', 'gov.za', 'ac.za', 'edu.za', 'net.za',
+                        'co.jp', 'go.jp', 'ac.jp', 'ne.jp', 'ad.jp'
+                    ];
+
+                    // Verificar si es una extensión válida 
+                    let isValidExtension = false;
+                    
+                    // Primero intentar con la extensión simple (ejemplo: 'com')
+                    if (validExtensions.includes(extension)) {
+                        isValidExtension = true;
+                    } else {
+                        // Intentar con extensiones multi-nivel (ejemplo: 'co.uk')
+                        for (const multiExt of validExtensions.filter(ext => ext.includes('.'))) {
+                            if (domainPart.endsWith('.' + multiExt)) {
+                                isValidExtension = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (!isValidExtension) {
+                        document.getElementById('emailError').innerText = 'La extensión del correo electrónico no es válida.';
+                        document.getElementById('emailError').style.display = 'block';
+                        isValid = false;
+                    } else {
+                        // Verificar que no contenga dominios temporales conocidos
+                        const temporaryDomains = [
+                            'tempmail.com', 'temp-mail.org', 'fakeinbox.com', 
+                            'tempinbox.com', 'yopmail.com', 'mailinator.com',
+                            'guerrillamail.com', '10minutemail.com', 'mailnesia.com',
+                            'trashmail.com', 'sharklasers.com', 'guerrillamail.info'
+                        ];
+                        
+                        if (temporaryDomains.some(domain => domainPart.includes(domain))) {
+                            document.getElementById('emailError').innerText = 'Por favor, utiliza un correo electrónico permanente (no temporal).';
+                            document.getElementById('emailError').style.display = 'block';
+                            isValid = false;
+                        }
+                    }
                 }
             }
 
