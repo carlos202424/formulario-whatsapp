@@ -63,4 +63,4 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 ## Contacto
 
-Para más información, puedes contactar a [tu_email@example.com](mailto:tu_email@example.com).
+Para más información, puedes contactar a [luxeryprime@gmail.com](mailto:tluxeryprime@gmail.com).
