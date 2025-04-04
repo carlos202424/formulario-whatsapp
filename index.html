@@ -305,6 +305,17 @@
             margin-bottom: 5px; /* Mantener el margen original */
             text-shadow: 0 2px 10px rgba(0, 198, 255, 0.5); /* Mantener la sombra original */
         }
+
+        /* Efecto intermitente para los mensajes de error */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .blink {
+            animation: blink 1s linear infinite; /* Cambia la duración según sea necesario */
+        }
     </style>
 </head>
 <body>
@@ -323,21 +334,21 @@
             <div class="form-group mb-4">
                 <label for="name"><span class="text-danger">*</span> Nombre y Apellido </label>
                 <input type="text" autocomplete="on" class="form-control" id="name" placeholder="Nombre y apellido (Reales)" required aria-describedby="nameError nameHelp">
-                <small class="form-text text-danger" id="nameError" style="display:none;"></small>
+                <div class="alert alert-danger blink" id="nameError" style="display:none;"></div>
                 <small class="form-text text-muted" id="nameHelp">Por favor ingresa un solo nombre y un apellido (Reales).</small>
             </div>
 
             <div class="form-group mb-4">
                 <label for="date"><span class="text-danger">*</span> Fecha de Nacimiento </label>
                 <input type="date" class="form-control" id="date" required aria-describedby="dateError dateHelp">
-                <small class="form-text text-danger" id="dateError" style="display:none;"></small>
+                <div class="alert alert-danger blink" id="dateError" style="display:none;"></div>
                 <small class="form-text text-muted" id="dateHelp">Ingresa tu fecha de nacimiento (Real).</small>
             </div>
 
             <div class="form-group mb-4">
                 <label for="email"><span class="text-danger">*</span> Correo Electrónico</label>
                 <input type="email" autocomplete="on" class="form-control" id="email" placeholder="tucorreo@example.com" required aria-describedby="emailError emailHelp">
-                <small class="form-text text-danger" id="emailError" style="display:none;"></small>
+                <div class="alert alert-danger blink" id="emailError" style="display:none;"></div>
                 <small class="form-text text-muted" id="emailHelp">Proporcione solo una dirección de correo electrónico válida.</small>
             </div>
 
