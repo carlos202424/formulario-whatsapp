@@ -1,0 +1,7 @@
+indexGAS.html
+ingresos.gs
+
+# Ignorar otros archivos o directorios si es necesario
+# .env
+# node_modules/
+# dist/
