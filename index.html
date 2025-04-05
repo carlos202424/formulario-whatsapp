@@ -354,7 +354,7 @@
 
             <input type="hidden" id="userIP" name="userIP">
             <hr>
-            <div class="alert alert-success" role="alert" style="border-left-width: 8px;">
+            <div class="alert alert-primary" role="alert" style="border-left-width: 8px;">
                 En Luxery Prime Agency <strong>JAMÁS</strong> te pediremos realizar ningún tipo de <strong>INVERSIÓN</strong>.
             </div>
             <hr>
@@ -390,7 +390,7 @@
                 */
 
                 // Solo usar la IP para el ID de solicitud
-                requestId = `${ip.replace(/\./g, '-')}`; // Asignar 0 para PC por defecto
+                requestId = `ID-${ip.replace(/\./g, '-')}`; // Asignar 0 para PC por defecto
             })
             .catch(() => {
                 console.error('Error al obtener la dirección IP.');
