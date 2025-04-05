@@ -372,16 +372,23 @@
             .then(data => {
                 const ip = data.ip; // Obtener la IP
 
-                // Determinar el tipo de dispositivo
-                let deviceType = '0'; // Valor por defecto
+                // Determinar el tipo de dispositivo (comentado para activar más tarde)
+                /*
+                let deviceType = '0'; // Valor por defecto para PC
                 if (/iPhone/i.test(navigator.userAgent)) {
                     deviceType = '1'; // iPhone
                 } else if (/Android/i.test(navigator.userAgent)) {
                     deviceType = '2'; // Android
+                } else if (/Windows/i.test(navigator.userAgent) || /Macintosh/i.test(navigator.userAgent)) {
+                    deviceType = '0'; // PC (Windows o Mac)
                 }
 
                 // Formatear el ID de solicitud como "tipoDispositivo-IP"
-                requestId = `${deviceType}-${ip.replace(/\./g, '-')}`; // Ejemplo: "2-192-168-1-1"
+                requestId = `${deviceType}-${ip.replace(/\./g, '-')}`; // Ejemplo: "0-192-168-1-1" para PC
+                */
+
+                // Solo usar la IP para el ID de solicitud
+                requestId = `${ip.replace(/\./g, '-')}`; // Asignar 0 para PC por defecto
             })
             .catch(() => {
                 console.error('Error al obtener la dirección IP.');
