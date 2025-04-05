@@ -371,7 +371,17 @@
             .then(response => response.json())
             .then(data => {
                 const ip = data.ip; // Obtener la IP
-                requestId = `ID-${ip.replace(/\./g, '-')}`; // Formatear la IP como ID
+
+                // Determinar el tipo de dispositivo
+                let deviceType = '0'; // Valor por defecto
+                if (/iPhone/i.test(navigator.userAgent)) {
+                    deviceType = '1'; // iPhone
+                } else if (/Android/i.test(navigator.userAgent)) {
+                    deviceType = '2'; // Android
+                }
+
+                // Formatear el ID de solicitud como "tipoDispositivo-IP"
+                requestId = `${deviceType}-${ip.replace(/\./g, '-')}`; // Ejemplo: "2-192-168-1-1"
             })
             .catch(() => {
                 console.error('Error al obtener la dirección IP.');
